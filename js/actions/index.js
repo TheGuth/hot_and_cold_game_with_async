@@ -6,3 +6,15 @@
 //----check to see if guess is correct
 //--------if correct, prompt user
 //--------if incorrect, add number to guess list and prompt for new guess
+
+export const GENERATE_NEW_TARGET = 'GENERATE_NEW_TARGET';
+export const CHECK_USER_GUESS = 'CHECK_USER_GUESS';
+
+export const generateNewTarget = () => ({
+  type: GENERATE_NEW_TARGET
+});
+
+export const checkUserGuess = (guess) => ({
+  type: CHECK_USER_GUESS,
+  guess
+});
