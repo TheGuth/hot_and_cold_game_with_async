@@ -4,7 +4,8 @@ const initialState = {
   targetNumber: null, 
   userGuesses: [],
   modal: false,
-  userInput: ''
+  userInput: '',
+  currentTemp: ''
 };
 
 export const gameReducer = (state=initialState, action) => {
@@ -14,7 +15,7 @@ export const gameReducer = (state=initialState, action) => {
       case('PROCESS_USER_INPUT'):
         return Object.assign({}, state, {userInput: action.userInput});
       case('PROCESS_USER_GUESS'):
-        return Object.assign({}, state, {userGuesses: [...state.userGuesses, action.guess]});
+        return Object.assign({}, state, {userGuesses: [...state.userGuesses, action.guess], userInput: ''});
       case('CHANGE_MODAL_STATE'):
          return Object.assign({}, state, {modal: !state.modal})
       default:

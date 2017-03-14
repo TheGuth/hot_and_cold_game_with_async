@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import GuessContainer from './guessContainer';
+import { generateNewGame } from '../actions/index';
 
 export function Gameboard(props){
+  props.dispatch(generateNewGame());
   return (
     <div>
       <button>WHAT?</button>

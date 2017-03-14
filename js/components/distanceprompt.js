@@ -4,23 +4,20 @@ import { connect } from 'react-redux';
 
 
 export function DistancePrompt(props) {
-  const target = props.targetNumber; // 42
-  const thresholds = {hot: 5, mild: 10, cold: 20};
-
-  const thresholdsResults = () => {
+  const target = props.targetNumber;
+  const thresholds = {Blazing: 2, Hot: 5, Mild: 10, Cold: 20};
+  console.log(target);
+  const thresholdsResults = (() => {
     for (let key in thresholds) {
-      console.log(target);
-      console.log(props.guess);
       if ( target - thresholds[key] <= props.guess && props.guess <= target + thresholds[key] ) {
-        console.log(key);
-        return key;
+        return `You are currently: ${key}!`;
       }
     }
-    return 'Freezing Cold';
-  }
-
-  thresholdsResults();
-
+    if(props.guess === undefined){
+      return 'Hey you! Guess a number!';
+    }
+    return 'You are currently: Freezing Cold';
+  })();
 
   return (
     <h2>{thresholdsResults}</h2>
