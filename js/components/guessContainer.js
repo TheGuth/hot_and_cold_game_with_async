@@ -10,7 +10,7 @@ export function GameContainer(props){
     <div>
       <DistancePrompt />
       <form action="#" onSubmit={() => props.dispatch(processUserGuess(props.userInput))}>
-        <input type="text" placeholder="What's your guess?" value={props.userInput} onChange={(event) => props.dispatch(processUserInput(event.target.value))}/><br/>
+        <input type="text" placeholder="What's your guess?" value={props.userInput} onChange={(event) => props.dispatch(processUserInput(event.target.value))}/>
         <input type="submit" value="GUESS"/>
       </form>
       <GuessCounter />

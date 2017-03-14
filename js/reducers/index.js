@@ -27,15 +27,15 @@ function checkUserGuess(guess, target){
 
 export const gameReducer = (state=initialState, action) => {
     switch(action.type){
-      case('GENERATE_NEW_GAME'):
+      case actions.GENERATE_NEW_GAME:
         return {...state, targetNumber: Math.floor(Math.random() * 100) + 1};
-      case('PROCESS_USER_INPUT'):
+      case actions.PROCESS_USER_INPUT:
         return {...state, userInput: action.userInput};
-      case('PROCESS_USER_GUESS'):
+      case actions.PROCESS_USER_GUESS:
         const checkResult = checkUserGuess(action.guess, state.targetNumber);
         return {...state, userGuesses: [...state.userGuesses, action.guess], userInput: '', currentTemp: checkResult};
-      case('CHANGE_MODAL_STATE'):
-         return {...state, modal: !state.modal};
+      case actions.CHANGE_MODAL_STATE:
+        return {...state, modal: !state.modal};
       default:
         return state;
     }
