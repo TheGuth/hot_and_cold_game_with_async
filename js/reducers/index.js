@@ -8,6 +8,23 @@ const initialState = {
   currentTemp: ''
 };
 
+const thresholds = {Blazing: 2, Hot: 5, Mild: 10, Cold: 20};
+
+function checkUserGuess(guess, target){
+    if(guess == target){
+      return `Correct, you won! The target number was indeed, ${target}!`;
+    }
+    for (let key in thresholds) {
+      if ( target - thresholds[key] <= guess && guess <= target + thresholds[key] ) {
+        return `You are currently: ${key}`;
+      }
+    }
+    if(guess === undefined){
+      return 'Hey you! Guess a number!';
+    }
+    return 'You are currently: Freezing Cold';
+}
+
 export const gameReducer = (state=initialState, action) => {
     switch(action.type){
       case('GENERATE_NEW_GAME'):
@@ -15,9 +32,8 @@ export const gameReducer = (state=initialState, action) => {
       case('PROCESS_USER_INPUT'):
         return {...state, userInput: action.userInput};
       case('PROCESS_USER_GUESS'):
-        return {...state, userGuesses: [...state.userGuesses, action.guess], userInput: ''};
-      case('UPDATE_CURRENT_TEMP'):
-        return {...state, currentTemp: action.newTemp}
+        const checkResult = checkUserGuess(action.guess, state.targetNumber);
+        return {...state, userGuesses: [...state.userGuesses, action.guess], userInput: '', currentTemp: checkResult};
       case('CHANGE_MODAL_STATE'):
          return {...state, modal: !state.modal};
       default:
