@@ -1,7 +1,7 @@
 import * as actions from '../actions/index';
 
 const initialState = {
-  targetNumber: null,
+  targetNumber: null, 
   userGuesses: [],
   modal: false,
   userInput: ''
