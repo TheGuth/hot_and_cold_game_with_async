@@ -11,9 +11,15 @@ export const GENERATE_NEW_GAME = 'GENERATE_NEW_GAME';
 export const PROCESS_USER_GUESS = 'PROCESS_USER_GUESS';
 export const CHANGE_MODAL_STATE = 'CHANGE_MODAL_STATE';
 export const PROCESS_USER_INPUT = 'PROCESS_USER_INPUT';
+export const UPDATE_CURRENT_TEMP = 'UPDATE_CURRENT_TEMP';
 
 export const generateNewGame = () => ({
   type: GENERATE_NEW_GAME
+});
+
+export const updateCurrentTemp = (newTemp) => ({
+  type: UPDATE_CURRENT_TEMP,
+  newTemp
 });
 
 export const processUserInput = (userInput) => ({

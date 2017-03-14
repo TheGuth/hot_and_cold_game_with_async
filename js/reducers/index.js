@@ -11,13 +11,15 @@ const initialState = {
 export const gameReducer = (state=initialState, action) => {
     switch(action.type){
       case('GENERATE_NEW_GAME'):
-        return Object.assign({}, state, {targetNumber: Math.floor(Math.random() * 100) + 1});
+        return {...state, targetNumber: Math.floor(Math.random() * 100) + 1};
       case('PROCESS_USER_INPUT'):
-        return Object.assign({}, state, {userInput: action.userInput});
+        return {...state, userInput: action.userInput};
       case('PROCESS_USER_GUESS'):
-        return Object.assign({}, state, {userGuesses: [...state.userGuesses, action.guess], userInput: ''});
+        return {...state, userGuesses: [...state.userGuesses, action.guess], userInput: ''};
+      case('UPDATE_CURRENT_TEMP'):
+        return {...state, currentTemp: action.newTemp}
       case('CHANGE_MODAL_STATE'):
-         return Object.assign({}, state, {modal: !state.modal})
+         return {...state, modal: !state.modal};
       default:
         return state;
     }
