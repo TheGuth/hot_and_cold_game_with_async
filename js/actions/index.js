@@ -16,9 +16,9 @@ export const generateNewGame = () => ({
   type: GENERATE_NEW_GAME
 });
 
-export const processUserInput = (input) => ({
+export const processUserInput = (userInput) => ({
   type: PROCESS_USER_INPUT,
-  input
+  userInput
 });
 
 export const processUserGuess = (guess) => ({
