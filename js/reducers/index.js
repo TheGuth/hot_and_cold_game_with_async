@@ -1,7 +1,7 @@
 import * as actions from '../actions/index';
 
 const initialState = {
-  targetNumber: null,
+  targetNumber: Math.floor(Math.random() * 100) + 1,
   userGuesses: [],
   modal: false,
   userInput: '',
@@ -14,9 +14,17 @@ function checkUserGuess(guess, target, userGuesses){
     if (guess > 100 || isNaN(guess) || guess < 1) {
       return {prompt: 'You must guess a number between 1 and 100!', classType: '', invalid: true}
     }
+
+    for (let currentGuess of userGuesses) {
+      if (guess === currentGuess.num) {
+        return {prompt: 'You already guessed that!', classType: '', invalid: true}
+      }
+    }
+
     if(guess == target){
       return {prompt: `Correct, you won! The target number was indeed, ${target}!`, classType: 'success'};
     }
+
     for (let key in thresholds) {
       if ( target - thresholds[key] <= guess && guess <= target + thresholds[key] ) {
         return {prompt: `You are currently: ${key}`, classType: key.toLowerCase()};
@@ -32,6 +40,7 @@ export const gameReducer = (state=initialState, action) => {
       case actions.PROCESS_USER_INPUT:
         return {...state, userInput: action.userInput};
       case actions.PROCESS_USER_GUESS:
+        action.e.preventDefault();
         const {prompt, classType, invalid} = checkUserGuess(action.guess, state.targetNumber, state.userGuesses);
         if (invalid) {
           return {...state, currentTemp: prompt};

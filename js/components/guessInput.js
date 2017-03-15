@@ -4,7 +4,7 @@ import { processUserGuess, processUserInput } from '../actions/index';
 
 export function GuessInput(props){
   return (
-    <form action="#" onSubmit={() => props.dispatch(processUserGuess(props.userInput))}>
+    <form action="#" onSubmit={(e) => props.dispatch(processUserGuess(props.userInput, e))}>
         <div className="input-group">
           <input type="text" className="form-control" placeholder="What's your guess?" value={props.userInput} onChange={(event) => props.dispatch(processUserInput(event.target.value))}/>
           <span className="input-group-btn">
@@ -20,4 +20,3 @@ const mapStateToProps = (state, props) => ({
 });
 
 export default connect(mapStateToProps)(GuessInput);
-

@@ -21,9 +21,10 @@ export const processUserInput = (userInput) => ({
   userInput
 });
 
-export const processUserGuess = (guess) => ({
+export const processUserGuess = (guess, e) => ({
   type: PROCESS_USER_GUESS,
-  guess
+  guess,
+  e
 });
 
 export const changeModalState = () => ({

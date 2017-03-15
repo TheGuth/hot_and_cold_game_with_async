@@ -13,12 +13,12 @@ body{
   font-family: 'Trade Winds', cursive;
   font-size: 8em;
 }
-/*.hotTitle{
-  color: #db250d;
+
+.orTitle {
+  margin: -10px;
+  font-size: .6em;
 }
-.coldTitle{
-  color: #0d79e5;
-}*/
+
 .prompt{
   font-family: 'Open Sans', sans-serif;
   color: white;
@@ -32,7 +32,7 @@ body{
 
 #actionBar{
   margin: 0;
-  padding: 0; 
+  padding: 0;
 }
 
 #whatBtn{
