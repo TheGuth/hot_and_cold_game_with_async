@@ -43,7 +43,7 @@ export const gameReducer = (state=initialState, action) => {
         action.e.preventDefault();
         const {prompt, classType, invalid} = checkUserGuess(action.guess, state.targetNumber, state.userGuesses);
         if (invalid) {
-          return {...state, currentTemp: prompt};
+          return {...state, currentTemp: prompt, userInput: ''};
         }
         return {...state, userGuesses: [...state.userGuesses, {num: action.guess, prompt, classType}], userInput: '', currentTemp: prompt};
       case actions.CHANGE_MODAL_STATE:

@@ -51,14 +51,30 @@ body{
   flex-direction: column;
 }
 
+.guessBar{
+  max-width: 500px;
+}
+
+.guessCounter{
+  display: flex;
+  width: 500px;
+}
+
+.guessCounter p{
+  font-size: 18px;
+  margin-top: 5px;
+  font-family: 'Open Sans', sans-serif;
+}
+
 .guessList {
   display: flex;
+  margin-top: 20px;
   max-width: 500px;
   flex-wrap: wrap;
 }
 
 .gameContainer{
-  width: 600px;
+  width: 900px;
   display: flex;
   justify-content: center;
   align-items: center;

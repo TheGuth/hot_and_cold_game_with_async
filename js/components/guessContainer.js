@@ -10,7 +10,7 @@ export default function GameContainer(){
     <div className="gameContainer">
       <DistancePrompt />
       <GuessInput />
-      <GuessCounter />
+      {/*<GuessCounter />*/}
       <GuessList />
     </div>
   );

@@ -2,7 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 export function GuessCounter(props){
-  return <h3>Guesses: {props.counter}</h3>
+  if(props.counter === undefined || props.counter === 0){
+    return null;
+  }
+  return <div className="guessCounter"><p>Guesses: {props.counter}</p></div>
 }
 
 const mapStateToProps = (state, props) => ({
