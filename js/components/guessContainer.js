@@ -1,26 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { processUserGuess, processUserInput } from '../actions/index';
 import DistancePrompt from './distanceprompt';
 import GuessCounter from './guessCounter';
 import GuessList from './guessList';
+import GuessInput from './guessInput';
 
-export function GameContainer(props){
+export default function GameContainer(){
   return(
-    <div>
+    <div className="gameContainer">
       <DistancePrompt />
-      <form action="#" onSubmit={() => props.dispatch(processUserGuess(props.userInput))}>
-        <input type="text" placeholder="What's your guess?" value={props.userInput} onChange={(event) => props.dispatch(processUserInput(event.target.value))}/>
-        <input type="submit" value="GUESS"/>
-      </form>
+      <GuessInput />
       <GuessCounter />
       <GuessList />
     </div>
   );
 }
-
-const mapStateToProps = (state, props) => ({
-  userInput : state.userInput
-});
-
-export default connect(mapStateToProps)(GameContainer);

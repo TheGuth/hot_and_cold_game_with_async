@@ -10,9 +10,9 @@ const initialState = {
 
 const thresholds = {Blazing: 2, Hot: 5, Mild: 10, Cold: 20};
 
-function checkUserGuess(guess, target){
+function checkUserGuess(guess, target, userGuesses){
     if (guess > 100 || isNaN(guess) || guess < 1) {
-      return {prompt: 'You must guess a number between 1 and 100', classType: '', invalid: true}
+      return {prompt: 'You must guess a number between 1 and 100!', classType: '', invalid: true}
     }
     if(guess == target){
       return {prompt: `Correct, you won! The target number was indeed, ${target}!`, classType: 'success'};
@@ -32,7 +32,7 @@ export const gameReducer = (state=initialState, action) => {
       case actions.PROCESS_USER_INPUT:
         return {...state, userInput: action.userInput};
       case actions.PROCESS_USER_GUESS:
-        const {prompt, classType, invalid} = checkUserGuess(action.guess, state.targetNumber);
+        const {prompt, classType, invalid} = checkUserGuess(action.guess, state.targetNumber, state.userGuesses);
         if (invalid) {
           return {...state, currentTemp: prompt};
         }

@@ -1,23 +1,113 @@
+* {
+  box-sizing: border-box;
+}
+html{
+  height: 100%;
+}
+body{
+  background: linear-gradient(to right, #db250d 0%, #0d79e5  100%);
+  height: 100%;
+}
+
+.title{
+  font-family: 'Trade Winds', cursive;
+  font-size: 8em;
+}
+/*.hotTitle{
+  color: #db250d;
+}
+.coldTitle{
+  color: #0d79e5;
+}*/
+.prompt{
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+  margin-bottom: 2em;
+  font-size: 2em;
+}
+#app{
+  width: 100%;
+  height: 100%;
+}
+
+#actionBar{
+  margin: 0;
+  padding: 0; 
+}
+
+#whatBtn{
+  margin: 10px;
+  float: left;
+}
+#newGameBtn{
+  margin: 10px;
+  float: right;
+}
+
+#centerDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.guessList {
+  display: flex;
+  max-width: 500px;
+  flex-wrap: wrap;
+}
+
+.gameContainer{
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.container {
+  background: linen;
+  background-image: url("https://www.transparenttextures.com/patterns/shattered-dark.png");
+  padding: 0;
+  min-height: 100%;
+}
+
+
+
+
+/*------------------------------------------GUESS COLORS*/
+.numberBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  margin: 5px;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  color: white;
+  text-align: center;
+}
+
 .hot {
-  border: 1px solid orangered;
+  background-color: orangered;
 }
 
 .mild {
-  border: 1px solid orange;
+  background-color: orange;
 }
 
 .cold {
-  border: 1px solid lightblue;
+  background-color: lightblue;
 }
 
 .freezing {
-  border: 1px solid darkblue;
+  background-color: darkblue;
 }
 
 .blazing {
-  border: 1px solid red;
+  background-color: red;
 }
 
 .success {
-  border: 1px solid green;
+  background-color: green;
 }
