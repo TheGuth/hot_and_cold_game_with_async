@@ -1,7 +1,7 @@
 import * as actions from '../actions/index';
 
 const initialState = {
-  targetNumber: null, 
+  targetNumber: null,
   userGuesses: [],
   modal: false,
   userInput: '',
@@ -11,29 +11,32 @@ const initialState = {
 const thresholds = {Blazing: 2, Hot: 5, Mild: 10, Cold: 20};
 
 function checkUserGuess(guess, target){
+    if (guess > 100 || isNaN(guess) || guess < 1) {
+      return {prompt: 'You must guess a number between 1 and 100', classType: '', invalid: true}
+    }
     if(guess == target){
-      return `Correct, you won! The target number was indeed, ${target}!`;
+      return {prompt: `Correct, you won! The target number was indeed, ${target}!`, classType: 'success'};
     }
     for (let key in thresholds) {
       if ( target - thresholds[key] <= guess && guess <= target + thresholds[key] ) {
-        return `You are currently: ${key}`;
+        return {prompt: `You are currently: ${key}`, classType: key.toLowerCase()};
       }
     }
-    if(guess === undefined){
-      return 'Hey you! Guess a number!';
-    }
-    return 'You are currently: Freezing Cold';
+    return {prompt: 'You are currently: Freezing', classType: 'freezing'};
 }
 
 export const gameReducer = (state=initialState, action) => {
     switch(action.type){
       case actions.GENERATE_NEW_GAME:
-        return {...state, targetNumber: Math.floor(Math.random() * 100) + 1};
+        return {...state, ...initialState, targetNumber: Math.floor(Math.random() * 100) + 1};
       case actions.PROCESS_USER_INPUT:
         return {...state, userInput: action.userInput};
       case actions.PROCESS_USER_GUESS:
-        const checkResult = checkUserGuess(action.guess, state.targetNumber);
-        return {...state, userGuesses: [...state.userGuesses, action.guess], userInput: '', currentTemp: checkResult};
+        const {prompt, classType, invalid} = checkUserGuess(action.guess, state.targetNumber);
+        if (invalid) {
+          return {...state, currentTemp: prompt};
+        }
+        return {...state, userGuesses: [...state.userGuesses, {num: action.guess, prompt, classType}], userInput: '', currentTemp: prompt};
       case actions.CHANGE_MODAL_STATE:
         return {...state, modal: !state.modal};
       default:

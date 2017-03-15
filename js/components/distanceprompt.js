@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { updateCurrentTemp } from '../actions/index';
 
 export function DistancePrompt(props) {
-  return <h2>{props.currentTemp}</h2>;
+  return <h2>{props.currentTemp || 'Hey You! Pick A Number!'}</h2>;
 }
 
 const mapStateToProps = (state, props) => ({

@@ -1,3 +1,23 @@
 .hot {
+  border: 1px solid orangered;
+}
+
+.mild {
+  border: 1px solid orange;
+}
+
+.cold {
+  border: 1px solid lightblue;
+}
+
+.freezing {
+  border: 1px solid darkblue;
+}
+
+.blazing {
   border: 1px solid red;
+}
+
+.success {
+  border: 1px solid green;
 }
