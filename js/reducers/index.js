@@ -5,7 +5,9 @@ const initialState = {
   userGuesses: [],
   modal: false,
   userInput: '',
-  currentTemp: ''
+  currentTemp: '',
+  fewestGuesses: undefined,
+  gameOver: false
 };
 
 const thresholds = {Blazing: 2, Hot: 5, Mild: 10, Cold: 20};
@@ -22,7 +24,7 @@ function checkUserGuess(guess, target, userGuesses){
     }
 
     if(guess == target){
-      return {prompt: `Correct, you won! The target number was indeed, ${target}!`, classType: 'success'};
+      return {prompt: `Correct, you won! The target number was indeed, ${target}!`, classType: 'success', gameOver: true};
     }
 
     for (let key in thresholds) {
@@ -41,13 +43,23 @@ export const gameReducer = (state=initialState, action) => {
         return {...state, userInput: action.userInput};
       case actions.PROCESS_USER_GUESS:
         action.e.preventDefault();
-        const {prompt, classType, invalid} = checkUserGuess(action.guess, state.targetNumber, state.userGuesses);
+        const {prompt, classType, invalid, gameOver} = checkUserGuess(action.guess, state.targetNumber, state.userGuesses);
         if (invalid) {
           return {...state, currentTemp: prompt, userInput: ''};
         }
-        return {...state, userGuesses: [...state.userGuesses, {num: action.guess, prompt, classType}], userInput: '', currentTemp: prompt};
+        return {...state, userGuesses: [...state.userGuesses, {num: action.guess, prompt, classType}], userInput: '', currentTemp: prompt, gameOver: gameOver};
       case actions.CHANGE_MODAL_STATE:
         return {...state, modal: !state.modal};
+      case actions.FETCH_FEWEST_GUESSES:
+        return {...state, fewestGuesses: action.fewestGuesses}
+      case actions.FETCH_FEWEST_GUESSES_ERROR:
+        console.error(action.error);
+        return state;
+      case actions.SAVE_FEWEST_GUESSES:
+        return {...state, fewestGuesses: action.fewestGuesses}
+      case actions.SAVE_FEWEST_GUESSES_ERROR:
+        console.error(action.error);
+        return state;
       default:
         return state;
     }

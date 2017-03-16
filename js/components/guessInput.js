@@ -1,8 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { processUserGuess, processUserInput } from '../actions/index';
+import * as actions from '../actions/index';
 
 export function GuessInput(props){
+  if (props.gameOver) {
+    props.dispatch(actions.saveGuesses(props.userGuesses.length));
+  }
   return (
     <form action="#" onSubmit={(e) => props.dispatch(processUserGuess(props.userInput, e))}>
         <div className="input-group guessBar">
@@ -16,7 +20,9 @@ export function GuessInput(props){
 }
 
 const mapStateToProps = (state, props) => ({
-  userInput : state.userInput
+  userInput : state.userInput,
+  userGuesses: state.userGuesses,
+  gameOver: state.gameOver
 });
 
 export default connect(mapStateToProps)(GuessInput);
